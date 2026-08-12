@@ -14,6 +14,14 @@
 
 下一步依正式 roadmap 建立 Chapter 02 scope；正式 Lab 自 Chapter 04 開始。
 
+## 學生閱讀版
+
+- `dist/chapter-01.html`：瀏覽器閱讀版，兩張 SVG 已內嵌，可離線開啟。
+- `dist/chapter-01.pdf`：A4 下載與列印版。
+- `dist/book.md`：通過 manifest 驗證後組裝的出版來源稿。
+
+給學生時優先分享 HTML；需要傳到班級群組、Google Classroom 或列印時使用 PDF。
+
 ## 技術主線
 
 - 桌面 Chrome Stable 與 `chrome://webrtc-internals`。
