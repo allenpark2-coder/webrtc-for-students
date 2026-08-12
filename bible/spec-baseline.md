@@ -16,7 +16,7 @@
 
 | RFC／規範 | Status／更新關係 | 本書採用範圍 | 章節 |
 |---|---|---|---:|
-| RFC 8825 | Informational | WebRTC 整體問題與使用情境 | 01 |
+| RFC 8825 | Proposed Standard；Internet Standards Track | WebRTC applicability statement 與規範 roadmap；本身不另行定義 protocol | 01 |
 | RFC 1918 | BCP | IPv4 私有位址 | 03 |
 | RFC 2663 | Informational | NAT/NAPT 術語；不把 NAT 說成 firewall | 03 |
 | RFC 4787 | BCP；被 RFC 6888、7857 更新 | UDP NAT 行為；連同更新文件一起解讀 | 03 |

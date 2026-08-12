@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "chapter": "chapter-01",
+  "content_file": "book/chapters/chapter-01.md",
+  "content_sha256": "0a9673a4bbf89a6b51b8da3a1c65d2328f0c6e9a0a90f4d6a3741a84a7933d16",
+  "artifacts": {
+    "figures": [
+      {"file": "book/assets/figures/chapter-01-figure-metadata.md", "sha256": "bec57047b99c74f76518773570a7accdf1a222848fa546c2d37866e5cb9d41a0"},
+      {"file": "book/figures/story/chapter-01-file-versus-conversation-spec.md", "sha256": "c9c239fd4ae2f4283f6a84db8fdef9e4223d7509418f7c726095869cee059f70"},
+      {"file": "book/figures/story/chapter-01-file-versus-conversation.mmd", "sha256": "5e35b08a3c5bd7d35944941e6c343b59945ce29261bfa8cb16ed6e5a5371f135"},
+      {"file": "book/figures/story/chapter-01-file-versus-conversation.svg", "sha256": "5c2ad02ef4ca59be6c068b5ef51a7104e028248cc7700bf4dff361b324d47b15"},
+      {"file": "book/figures/technical/chapter-01-browser-concept-overview-spec.md", "sha256": "a1980390d0c67afe58dbcdca671c8f4fc8d4120bec4d1d3ef6d49804df5c338f"},
+      {"file": "book/figures/technical/chapter-01-browser-concept-overview.mmd", "sha256": "9572797ad38aef609716d4e628a0945b71ce2fb237e0201be68518e3697b1320"},
+      {"file": "book/figures/technical/chapter-01-browser-concept-overview.svg", "sha256": "18bd4873c80eae3d7889943bedd4b737a304c0fbfc3eaa218542db4a39e1e3c4"}
+    ],
+    "labs": []
+  },
+  "gates": {
+    "structure": {
+      "status": "pass", "round": 3,
+      "evidence": "book/reviews/chapter-01/structure-r03.md", "note": "",
+      "content_sha256": "0a9673a4bbf89a6b51b8da3a1c65d2328f0c6e9a0a90f4d6a3741a84a7933d16"
+    },
+    "body_technical": {
+      "status": "pass", "round": 3,
+      "evidence": "book/reviews/chapter-01/body-technical-r03.md", "note": "",
+      "content_sha256": "0a9673a4bbf89a6b51b8da3a1c65d2328f0c6e9a0a90f4d6a3741a84a7933d16"
+    },
+    "figure_technical": {
+      "status": "pass", "round": 2,
+      "evidence": "book/reviews/chapter-01/figure-technical-r02.md", "note": "",
+      "content_sha256": "0a9673a4bbf89a6b51b8da3a1c65d2328f0c6e9a0a90f4d6a3741a84a7933d16",
+      "artifact_set_sha256": "19f5197167bbec5f7e19426441479143b723f051c1420ae81ee59284a152cb7c"
+    },
+    "figure_accessibility": {
+      "status": "pass", "round": 2,
+      "evidence": "book/reviews/chapter-01/figure-accessibility-r02.md", "note": "",
+      "content_sha256": "0a9673a4bbf89a6b51b8da3a1c65d2328f0c6e9a0a90f4d6a3741a84a7933d16",
+      "artifact_set_sha256": "19f5197167bbec5f7e19426441479143b723f051c1420ae81ee59284a152cb7c"
+    },
+    "lab_execution": {
+      "status": "not_applicable", "round": 0,
+      "evidence": "", "note": "概念入口章；只有安全的產品層觀察與紙上替代，正式 Lab 自 Chapter 04 開始。",
+      "content_sha256": "0a9673a4bbf89a6b51b8da3a1c65d2328f0c6e9a0a90f4d6a3741a84a7933d16",
+      "artifact_set_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "lab_technical": {
+      "status": "not_applicable", "round": 0,
+      "evidence": "", "note": "概念入口章；沒有正式 Lab artifact，章內 mute/unmute 觀察已由正文技術與 editorial Gate 審查。",
+      "content_sha256": "0a9673a4bbf89a6b51b8da3a1c65d2328f0c6e9a0a90f4d6a3741a84a7933d16",
+      "artifact_set_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "editorial": {
+      "status": "pass", "round": 1,
+      "evidence": "book/reviews/chapter-01/editorial-r01.md", "note": "",
+      "content_sha256": "0a9673a4bbf89a6b51b8da3a1c65d2328f0c6e9a0a90f4d6a3741a84a7933d16"
+    }
+  }
+}

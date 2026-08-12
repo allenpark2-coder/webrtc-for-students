@@ -1,0 +1,47 @@
+flowchart TB
+    accTitle: 完成檔案寄送與持續雙向互動的時間差
+    accDescr: 上列顯示小明先準備完整影片，完成並交付後小華才觀看與回應；下列依時間排列小明與小華交錯往返的四次聲音與畫面互動。文字箭頭只表示互動節奏，不代表資料實際路徑。
+    TIME["時間由左向右 →"]
+
+    subgraph MODE_A["A　完整影片寄送"]
+        direction LR
+        A_MING["小明"] --> A_PREP["準備完整影片"]
+        A_PREP --> A_DONE[["影片完成"]]
+        A_DONE --> A_FILE["完整影片"]
+        A_FILE ==>|"交付完整影片"| A_VIEW["小華觀看"]
+        A_VIEW --> A_REPLY["小華回應"]
+        A_PREP -.- A_WAIT(["小華等待"])
+        A_WAIT -.- A_VIEW
+    end
+
+    subgraph MODE_B["B　持續雙向互動"]
+        direction TB
+        B_NOTE["邊產生、邊交換、邊回應"]
+        subgraph B_EVENTS[" "]
+            direction LR
+            B_ONE(["小明 → 小華<br/>聲音／畫面<br/>日期是……"])
+            B_TWO(["小明 ← 小華<br/>聲音／畫面<br/>星期一還是星期二？"])
+            B_THREE(["小明 → 小華<br/>聲音／畫面<br/>星期二。"])
+            B_FOUR(["小明 ← 小華<br/>聲音／畫面<br/>那個數字要重算。"])
+            B_ONE ~~~ B_TWO
+            B_TWO ~~~ B_THREE
+            B_THREE ~~~ B_FOUR
+        end
+        B_NOTE ~~~ B_EVENTS
+    end
+
+    LIMIT["注意：文字箭頭表示互動節奏，不表示資料實際路徑。"]
+
+    TIME ~~~ MODE_A
+    MODE_A ~~~ MODE_B
+    MODE_B ~~~ LIMIT
+
+    classDef label fill:#ffffff,stroke:#1f2937,color:#111827,stroke-width:2px;
+    classDef wait fill:#ffffff,stroke:#4b5563,color:#111827,stroke-width:2px,stroke-dasharray:5 4;
+    classDef note fill:#f3f4f6,stroke:#374151,color:#111827,stroke-width:2px;
+    class TIME,A_MING,A_PREP,A_DONE,A_FILE,A_VIEW,A_REPLY,B_ONE,B_TWO,B_THREE,B_FOUR label;
+    class A_WAIT wait;
+    class B_NOTE,LIMIT note;
+    style B_EVENTS fill:none,stroke:none;
+    style MODE_A fill:#ffffff,stroke:#374151,color:#111827;
+    style MODE_B fill:#ffffff,stroke:#374151,color:#111827;

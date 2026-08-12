@@ -1,0 +1,29 @@
+flowchart TB
+    accTitle: WebRTC 通話的最小概念鳥瞰
+    accDescr: Browser A 小明端位於左側，Browser B 小華端位於右側；中央分列雙向的協調資訊與即時影音概念交換。文字箭頭不表示直接傳送、實際拓撲或資料路徑。
+    subgraph OVERVIEW[" "]
+        direction LR
+        A["Browser A<br/>小明端"]
+        COORD["← · · · 協調資訊 · · · →"]
+        MEDIA["← ─── 即時影音 ─── →"]
+        B["Browser B<br/>小華端"]
+
+        A ~~~ COORD
+        COORD ~~~ B
+        A ~~~ MEDIA
+        MEDIA ~~~ B
+    end
+
+    LIMIT["注意：雙向文字箭頭只表示雙方都需交換，不表示直接傳送或實際資料路徑。<br/>概念鳥瞰；實際拓撲、路徑與內部做法於後章拆解。"]
+
+    OVERVIEW ~~~ LIMIT
+
+    classDef endpoint fill:#ffffff,stroke:#1f2937,color:#111827,stroke-width:2px;
+    classDef coord fill:#ffffff,stroke:#374151,color:#111827,stroke-width:2px,stroke-dasharray:5 4;
+    classDef media fill:#ffffff,stroke:#1f2937,color:#111827,stroke-width:2px;
+    classDef note fill:#f3f4f6,stroke:#374151,color:#111827,stroke-width:2px;
+    class A,B endpoint;
+    class COORD coord;
+    class MEDIA media;
+    class LIMIT note;
+    style OVERVIEW fill:none,stroke:none;

@@ -1,0 +1,2 @@
+# Markdown chapter cards use two-space hard line breaks intentionally.
+book/chapters/*.md whitespace=-blank-at-eol

@@ -6,13 +6,13 @@
 
 ## 目前狀態
 
-- 階段：Phase 1，全書設計。
-- 正式章節：尚未開始。
-- 規劃草稿：`.work/plan-draft-r03.md`，已通過第三輪技術 Gate；需經使用者核准後才能晉升至 `book/plan.md`。
-- 技術審查：`.work/reviews/plan-technical-r03.md`，結論為 `PLAN GATE PASS`。
+- 階段：正式逐章製作。
+- 正式章節：Chapter 01 已通過全部適用 Gate 並晉升。
+- 正式規劃：`book/plan.md`；使用者已於 2026-08-12 核准開始 Chapter 01。
+- Chapter 01 manifest：`book/manifests/chapter-01.json`。
 - 原始需求：`references/original-webrtc-brief.txt`，只作需求與範圍來源。
 
-目前不得撰寫第一章、生成正式插圖或建立 Lab；先完成章節依賴與技術規劃審查。
+下一步依正式 roadmap 建立 Chapter 02 scope；正式 Lab 自 Chapter 04 開始。
 
 ## 技術主線
 

@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+- 完成並正式晉升 Chapter 01 正文、兩張 Mermaid／SVG 圖、五個適用 Gate 與 hash manifest；正式 Lab 標記不適用。
+- 更正 RFC 8825 為 Proposed Standard／Internet Standards Track，並同步規範基線、roadmap、scope 與正文。
 - 由 book-authoring-kit 建立獨立的 WebRTC 高中生科普書專案。
 - 匯入原始 WebRTC 需求作為範圍來源，填妥技術基線、固定角色、來源政策與 Lab 安全界線。
 - 完成 6 Parts、18 Chapters、15 個 Lab 的 Phase 1 全書設計；第三輪規劃技術 Gate 通過，等待使用者核准。
