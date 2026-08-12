@@ -16,6 +16,7 @@
 
 ## 學生閱讀版
 
+- 線上閱讀：<https://allenpark2-coder.github.io/webrtc-for-students/>
 - `dist/chapter-01.html`：瀏覽器閱讀版，兩張 SVG 已內嵌，可離線開啟。
 - `dist/chapter-01.pdf`：A4 下載與列印版。
 - `dist/book.md`：通過 manifest 驗證後組裝的出版來源稿。
