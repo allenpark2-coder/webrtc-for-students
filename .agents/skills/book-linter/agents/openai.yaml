@@ -1,0 +1,4 @@
+interface:
+  display_name: "Book Linter"
+  short_description: "檢查章節結構、術語、來源、比喻與 Lab 安全欄位"
+  default_prompt: "使用 $book-linter 檢查指定草稿並建立新的 structure review。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Word Generator"
+  short_description: "依完整 Gate manifest 與正文、圖、Lab hash 彙整正式書稿"
+  default_prompt: "使用 $word-generator 驗證並彙整所有具出版資格的章節。"

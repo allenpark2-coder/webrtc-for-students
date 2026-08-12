@@ -1,0 +1,4 @@
+interface:
+  display_name: "Book Figures"
+  short_description: "將核准圖規格轉為可審查的 Mermaid、prompt 或正式圖片"
+  default_prompt: "使用 $book-figures 依核准規格產出下一輪圖表預覽。"

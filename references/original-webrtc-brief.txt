@@ -1,0 +1,470 @@
+# 原始需求：規劃並製作一本給高中生看的 WebRTC 入門書
+
+> 來源：使用者提供的 UTF-8 文字需求
+> 匯入日期：2026-08-12
+> 定位：需求與範圍來源，不是技術權威；技術主張仍須依 `bible/source-policy.md` 查證。
+
+你現在同時扮演以下角色：
+
+1. WebRTC / 網路通訊資深工程師
+2. 高中資訊科老師
+3. 科普書作者
+4. 技術插圖與架構圖設計師
+5. 實作課程設計師
+6. 技術書總編輯
+
+我要製作一本「高中生也能真正看懂的 WebRTC」技術書。
+
+這本書不是 API Reference，也不是把 RFC 改寫得比較簡單，而是希望讀者從生活經驗出發，逐步建立 WebRTC 的完整心智模型，最後能自己完成真正的 WebRTC 程式。
+
+---
+
+# 一、目標讀者
+
+假設讀者：
+
+* 15～18 歲
+* 會使用瀏覽器、手機、YouTube、LINE、Discord 等工具
+* 有基本電腦概念
+* 只懂一點 HTML / JavaScript，甚至完全沒有網路程式設計經驗
+* 不知道 SDP、ICE、STUN、TURN、NAT、RTP、RTCP、SRTP、DTLS
+* 數學程度約高中
+* 不要求先學 TCP/IP 教科書
+
+因此任何新的專有名詞第一次出現時，都不能直接用另一堆專有名詞解釋。
+
+---
+
+# 二、這本書最重要的教學原則
+
+每個技術概念都按照以下順序教：
+
+生活問題
+↓
+生活故事
+↓
+直覺理解
+↓
+簡單示意圖
+↓
+正式技術名稱
+↓
+真正的 WebRTC 架構
+↓
+封包 / Protocol 層級
+↓
+程式碼
+↓
+瀏覽器實驗
+↓
+Debug 方法
+
+例如：
+
+不要一開始寫：
+
+「STUN 是一種 NAT traversal protocol。」
+
+而應該先建立情境：
+
+「小明住在一個有警衛的社區裡，他知道自己的房號，卻不知道外面的人看到的地址是什麼。於是他打電話問一個站在網際網路上的朋友：『你看到我是從哪個地址打過來的？』」
+
+讓學生先理解問題，再告訴他：
+
+這個幫你從外面觀察自己網路地址的朋友，就是 STUN Server。
+
+之後才介紹：
+
+Private IP
+Public IP
+NAT
+STUN
+Server Reflexive Candidate
+ICE Candidate
+
+---
+
+# 三、全書使用一個持續發展的故事
+
+請設計固定角色，例如：
+
+小明：家裡的電腦
+小華：另一個網路的電腦
+警衛：NAT / Firewall
+地址詢問站：STUN Server
+物流轉運中心：TURN Server
+介紹人：Signaling Server
+視訊包裹：RTP Packet
+寄件追蹤單：RTCP
+防拆封條：SRTP
+安全握手：DTLS
+聯絡方式清單：ICE Candidate
+雙方能力履歷表：SDP
+
+故事人物必須隨章節持續存在，不要每章重新發明不同的比喻。
+
+但是也要明確告訴讀者：
+
+「比喻在哪裡成立」
+以及
+「比喻在哪裡開始不精確」
+
+避免學生最後只記得故事，卻建立錯誤技術觀念。
+
+---
+
+# 四、每章固定結構
+
+每一章請包含：
+
+## 1. 今天遇到什麼問題？
+
+先提出真實世界問題。
+
+## 2. 生活故事
+
+用高中生能理解的生活場景解釋。
+
+## 3. 如果你是工程師，你會怎麼解？
+
+讓學生先猜答案。
+
+## 4. 正式技術名稱
+
+故事理解後才導入專有名詞。
+
+## 5. 專有名詞小卡
+
+格式：
+
+英文：
+中文：
+一句話：
+生活比喻：
+真正作用：
+常見誤解：
+
+## 6. 第一張圖：生活故事圖
+
+使用人物、房子、警衛、郵局、道路等方式表達。
+
+## 7. 第二張圖：專業架構圖
+
+把上一張生活圖轉成真正 WebRTC 元件，例如：
+
+Browser A
+RTCPeerConnection
+Signaling Server
+STUN
+TURN
+ICE
+DTLS
+SRTP
+Browser B
+
+圖上清楚標示：
+
+控制訊號流
+媒體資料流
+誰連誰
+什麼資料經過 Server
+什麼資料通常 P2P
+
+## 8. 封包到底怎麼走？
+
+使用 Step 1 → Step 2 → Step 3 的方式描述。
+
+## 9. 最小實作
+
+提供可以真的執行的 HTML / JavaScript。
+
+不要一次給完整大型專案。
+
+每章只增加一小部分功能。
+
+## 10. 動手做
+
+讓學生使用 Chrome DevTools、webrtc-internals 或其他工具實際觀察。
+
+## 11. 故意把它弄壞
+
+設計一個故障，例如：
+
+關掉 STUN
+阻擋 UDP
+給錯 SDP
+ICE Candidate 不交換
+TURN 帳密錯誤
+
+讓學生觀察會發生什麼。
+
+## 12. 工程師 Debug
+
+教學生從：
+
+Console
+ICE state
+Signaling state
+Connection state
+SDP
+Candidate
+Stats
+
+找問題。
+
+## 13. 本章一句話
+
+最後只用一句話說出本章真正核心。
+
+## 14. 五題理解題
+
+不要只考名詞，要考「為什麼」。
+
+---
+
+# 五、全書希望涵蓋
+
+請從簡單到困難安排：
+
+Internet 基礎
+Client / Server
+IP Address
+Port
+LAN / WAN
+Private IP / Public IP
+NAT
+Firewall
+UDP / TCP
+
+然後進入 WebRTC：
+
+WebRTC 是什麼
+getUserMedia
+MediaStream
+MediaStreamTrack
+RTCPeerConnection
+Signaling
+Offer / Answer
+SDP
+ICE
+ICE Candidate
+Host Candidate
+Server Reflexive Candidate
+Relay Candidate
+STUN
+TURN
+Trickle ICE
+ICE Connectivity Check
+DTLS
+SRTP
+RTP
+RTCP
+Codec
+VP8 / VP9 / H.264 / AV1
+Jitter
+Packet Loss
+Latency
+Jitter Buffer
+NACK
+PLI
+FIR
+Congestion Control
+Bitrate
+WebRTC Stats
+
+最後進入實戰：
+
+同一台電腦建立 WebRTC
+兩個 Browser 建立連線
+簡單 Signaling Server
+跨 LAN
+STUN
+TURN
+coturn
+Camera → Browser
+IP Camera → WebRTC
+RTSP → WebRTC Gateway
+H.264
+雙向語音
+AEC
+NAT 問題
+Firewall 問題
+Debug
+webrtc-internals
+Wireshark
+
+---
+
+# 六、插圖規則
+
+每個重要概念至少規劃兩張圖：
+
+A. 生活故事圖
+B. 工程專業架構圖
+
+生活故事圖要：
+
+* 有故事性
+* 少文字
+* 高中生一眼能理解
+* 可以單獨看懂主要概念
+
+專業圖要：
+
+* 元件名稱正確
+* 箭頭方向正確
+* Protocol 正確
+* Control Plane / Media Plane 清楚
+* P2P 與 Server-mediated 流量清楚
+* 適合列印成技術書
+* 字體不能太小
+* 優先 16:9 或橫向大圖
+
+每張圖產生前，先輸出：
+
+圖的目的
+讀者看完必須理解什麼
+元件
+箭頭
+每條箭頭代表什麼
+故事版配置
+專業版配置
+
+不要直接生圖。
+
+---
+
+# 七、實作原則
+
+整本書建立一個可以逐章成長的 WebRTC Lab。
+
+例如：
+
+Lab 01：打開攝影機
+Lab 02：顯示 local video
+Lab 03：建立 RTCPeerConnection
+Lab 04：同頁建立兩個 Peer
+Lab 05：Create Offer
+Lab 06：SDP Offer / Answer
+Lab 07：交換 ICE Candidate
+Lab 08：加入 Signaling Server
+Lab 09：兩台電腦連線
+Lab 10：加入 STUN
+Lab 11：加入 TURN
+Lab 12：查看 WebRTC Stats
+Lab 13：模擬 Packet Loss
+Lab 14：Wireshark
+Lab 15：IP Camera → WebRTC
+
+每一個 Lab 都必須可以實際執行。
+
+程式碼需要解釋：
+
+「這一行程式碼，在我們前面的生活故事裡代表什麼？」
+
+---
+
+# 八、IP Camera 特別篇
+
+最後增加一個「真正工程師的世界」Part。
+
+情境：
+
+IP Camera
+↓
+H.264 Encoder
+↓
+RTSP / RTP
+↓
+WebRTC Gateway
+↓
+Browser
+
+解釋：
+
+為什麼 IPCam 已經有 H.264 還不能直接等同 WebRTC？
+RTSP 與 WebRTC 有什麼差異？
+H.264 bitstream 能不能重用？
+什麼情況需要 transcoding？
+什麼是 packetization？
+WebRTC Gateway 做了什麼？
+Camera firmware 負責什麼？
+Browser 負責什麼？
+Signaling Server 負責什麼？
+STUN/TURN 負責什麼？
+
+最後建立一張完整的：
+
+IP Camera → WebRTC → Browser
+
+產品級專業架構圖。
+
+---
+
+# 九、寫作風格
+
+請使用繁體中文。
+
+英文技術名詞保留，例如：
+
+網路位址轉換（NAT, Network Address Translation）
+
+第一次完整介紹。
+之後可以直接使用 NAT。
+
+文字風格：
+
+生動
+有故事
+不幼稚
+高中生可以理解
+工程師閱讀也不會覺得錯誤
+大量使用「為什麼？」
+先講問題，再講技術。
+
+避免教科書式定義堆疊。
+
+---
+
+# 十、現在先不要寫正文
+
+第一階段只做「整本書的設計」。
+
+請輸出：
+
+1. 書名提案
+2. 這本書的核心教學哲學
+3. 預期讀者
+4. 完整 Part / Chapter 目錄
+5. 每章學習目標
+6. 每章生活故事
+7. 每章會介紹的專有名詞
+8. 每章需要的生活故事圖
+9. 每章需要的專業架構圖
+10. 每章 Lab
+11. 章節之間的知識依賴關係
+12. 最終學生可以完成什麼
+13. 建議全書頁數
+14. 建議插圖數量
+15. 建議 Lab 數量
+
+特別檢查：
+
+學生是否會在還不知道 A 的情況下，就被迫理解需要 A 才能理解的 B。
+
+如果有，重新調整章節順序。
+
+最後產生一份「全書製作 Roadmap」，將工作拆成：
+
+Phase 1：課程架構
+Phase 2：故事與比喻
+Phase 3：技術內容
+Phase 4：生活插圖
+Phase 5：專業架構圖
+Phase 6：Lab
+Phase 7：Debug 實驗
+Phase 8：IP Camera 實戰
+Phase 9：技術審查
+Phase 10：出版整理
+
+完成計畫後停止，不要開始撰寫第一章，等待我確認。

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Book Writer"
+  short_description: "依技術基線、來源政策與固定模板撰寫可審查的章節草稿"
+  default_prompt: "使用 $book-writer 依目前 scope 撰寫下一輪章節草稿。"

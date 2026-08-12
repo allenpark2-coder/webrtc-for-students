@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "chapter": "chapter-NN",
+  "content_file": "book/chapters/chapter-NN.md",
+  "content_sha256": "",
+  "artifacts": {
+    "figures": [],
+    "labs": []
+  },
+  "gates": {
+    "structure": {"status": "pending", "round": 0, "evidence": "", "note": "", "content_sha256": ""},
+    "body_technical": {"status": "pending", "round": 0, "evidence": "", "note": "", "content_sha256": ""},
+    "figure_technical": {"status": "pending", "round": 0, "evidence": "", "note": "", "content_sha256": "", "artifact_set_sha256": ""},
+    "figure_accessibility": {"status": "pending", "round": 0, "evidence": "", "note": "", "content_sha256": "", "artifact_set_sha256": ""},
+    "lab_execution": {"status": "pending", "round": 0, "evidence": "", "note": "", "content_sha256": "", "artifact_set_sha256": ""},
+    "lab_technical": {"status": "pending", "round": 0, "evidence": "", "note": "", "content_sha256": "", "artifact_set_sha256": ""},
+    "editorial": {"status": "pending", "round": 0, "evidence": "", "note": "", "content_sha256": ""}
+  }
+}
