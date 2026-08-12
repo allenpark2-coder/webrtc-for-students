@@ -1,0 +1,89 @@
+---
+config:
+  theme: base
+  flowchart:
+    htmlLabels: true
+    curve: linear
+    nodeSpacing: 30
+    rankSpacing: 40
+  themeVariables:
+    fontFamily: "Noto Sans TC, Noto Sans CJK TC, sans-serif"
+    fontSize: "18px"
+    primaryTextColor: "#17212B"
+    lineColor: "#25364A"
+    edgeLabelBackground: "#FFFFFF"
+---
+flowchart TB
+  accTitle: 總機與警衛分工，以及 UDP／TCP 服務語意
+  accDescr: 生活故事圖：小明的內側聯絡表示先到總機，總機建立暫時對應，再到依 policy 判斷的警衛，最後指向小華所在的外側網路；下方分列保留一張張邊界但可能遺失或重排的 UDP 明信片，與建立狀態後可靠按序交付、但不保留表單邊界的 TCP 連續紙帶；文字明示 mapping 不等於放行、放行不等於 listener 存在，外側觀察位址不等於 public IP address 或永久身分。
+
+  subgraph A["A　總機先換聯絡表示，警衛再獨立判斷"]
+    direction LR
+    MING["小明<br/>內側聯絡表示"]
+    SWITCH["總機<br/>建立暫時對應"]
+    MAP["暫時對應表<br/>內側表示 ↔ 外側觀察位址"]
+    GUARD{"警衛<br/>依 policy 判斷"}
+    LISTENER["目的 listener？<br/>小華所在的外側網路"]
+    BLOCK["阻擋<br/>在 policy boundary 停止"]
+    OUTNOTE["外側觀察位址 ≠ public IP address<br/>也不是永久身分或可達保證"]
+
+    MING -->|"拿內側聯絡表示出發"| SWITCH
+    SWITCH -->|"建立 mapping"| MAP
+    MAP -->|"仍須另做 policy 判斷"| GUARD
+    GUARD -->|"允許"| LISTENER
+    GUARD ---|"阻擋"| BLOCK
+    LISTENER --- OUTNOTE
+  end
+
+  subgraph B["B　兩種運送服務只比較語意，不比較速度"]
+    direction LR
+    subgraph U["UDP 明信片"]
+      direction LR
+      UIN["送出<br/>D1　D2　D3　D4<br/>一張張邊界保留"]
+      UEVENT["服務本身可能<br/>遺失／重排"]
+      UOUT["可能收到<br/>D1　D3　D2<br/>D4 未出現"]
+      UIN --> UEVENT --> UOUT
+    end
+
+    subgraph T["TCP 連續紙帶"]
+      direction LR
+      TSTATE["先建立傳送狀態"]
+      TSEND["送出<br/>表單 A｜表單 B"]
+      TSTREAM["reliable、in-order<br/>連續 byte stream"]
+      TRECV["收到連續字流<br/>不保留表單邊界"]
+      TSTATE --> TSEND --> TSTREAM --> TRECV
+    end
+
+    UOUT ~~~ TSTATE
+  end
+
+  LIMIT["比喻界線　mapping ≠ 放行　｜　放行 ≠ listener 存在　｜　外側觀察位址 ≠ public IP address／永久身分　｜　UDP／TCP 不做速度排名"]
+  A ~~~ B
+  B ~~~ LIMIT
+
+  classDef person fill:#E7F0FA,stroke:#244A72,stroke-width:2px,color:#102A43,font-size:18px;
+  classDef mapping fill:#FFF1C7,stroke:#7A5710,stroke-width:3px,color:#2F250F,font-size:18px;
+  classDef policy fill:#FDE6E2,stroke:#8A3328,stroke-width:3px,color:#351713,font-size:18px;
+  classDef outside fill:#E7F3E8,stroke:#35623B,stroke-width:2px,color:#17341B,font-size:18px;
+  classDef stopped fill:#F7F7F7,stroke:#4C5661,stroke-width:3px,stroke-dasharray:6 4,color:#20262D,font-size:18px;
+  classDef note fill:#FFFFFF,stroke:#4C5661,stroke-width:2px,stroke-dasharray:4 4,color:#20262D,font-size:18px;
+  classDef udp fill:#E8F0FB,stroke:#315A89,stroke-width:2px,color:#102A43,font-size:18px;
+  classDef tcp fill:#F2EAF8,stroke:#65417D,stroke-width:2px,color:#2D1738,font-size:18px;
+  classDef limit fill:#FFF9E8,stroke:#111827,stroke-width:3px,color:#111827,font-size:18px;
+
+  class MING person;
+  class SWITCH,MAP mapping;
+  class GUARD policy;
+  class LISTENER outside;
+  class BLOCK stopped;
+  class OUTNOTE note;
+  class UIN,UEVENT,UOUT udp;
+  class TSTATE,TSEND,TSTREAM,TRECV tcp;
+  class LIMIT limit;
+
+  style A fill:#FAFCFE,stroke:#52677D,stroke-width:2px
+  style B fill:#FAFCFE,stroke:#52677D,stroke-width:2px
+  style U fill:#F5F8FC,stroke:#315A89,stroke-width:2px
+  style T fill:#FAF7FC,stroke:#65417D,stroke-width:2px
+  linkStyle default stroke:#25364A,stroke-width:2.5px;
+  linkStyle 11,12,13 stroke-width:0px;

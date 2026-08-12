@@ -1,0 +1,112 @@
+---
+config:
+  theme: base
+  flowchart:
+    htmlLabels: true
+    curve: linear
+    nodeSpacing: 28
+    rankSpacing: 28
+    wrappingWidth: 320
+  themeVariables:
+    fontFamily: "Noto Sans TC, Noto Sans CJK TC, sans-serif"
+    fontSize: "18px"
+    primaryTextColor: "#17212B"
+    lineColor: "#25364A"
+    edgeLabelBackground: "#FFFFFF"
+---
+flowchart TB
+  accTitle: IPv4 mapping、獨立 firewall policy 與 UDP／TCP 服務語意
+  accDescr: 專業圖：由左至右依序是 RFC 1918 private IPv4 host、獨立的 NAT 或 NAPT mapping table、獨立的 firewall policy boundary、outside network；表中以一筆 UDP 教學 tuple 分別示意 address-only NAT 與 address-plus-port NAPT，外側欄以 E 標示觀察位置相關的 outside observed address，並註明只有另有證據確定屬 public/global realm 才可另標 public IP address；下半部以分離時間線呈現 UDP datagram 邊界及可能遺失重排，與 TCP connection establishment 後的 reliable in-order byte stream，且不畫速度排名。
+
+  subgraph A["A　IPv4 表示、mapping 與 policy：三層分開看"]
+    direction LR
+    HOST["RFC 1918 private IPv4 host<br/>10.0.0.8:49152<br/>UDP；destination 不變"]
+
+    subgraph TABLE["NAT／NAPT mapping table（兩個平行案例）"]
+      direction TB
+      NAT["address-only NAT<br/>10.0.0.8:49152<br/>→ E:49152<br/>UDP；destination 不變"]
+      NAPT["address-plus-port NAPT<br/>10.0.0.8:49152<br/>→ E:62000<br/>UDP；destination 不變"]
+      BOUND["分層界線<br/>mapping record ≠ policy evidence<br/>mapping ≠ allow<br/>allow ≠ listener exists<br/>下一項仍須獨立判斷 policy"]
+    end
+
+    POLICY{"獨立 firewall<br/>policy boundary"}
+    DROP["阻擋<br/>policy evidence"]
+
+    subgraph OBS["outside observation 與條件式 evidence"]
+      direction TB
+      OUTSIDE["outside network<br/>E = outside observed address<br/>外側觀察位址<br/>目的 listener 仍須另證"]
+      EBOUND["E 是觀察位置相關的表示<br/>不等於 public IP address、<br/>永久身分或可達保證"]
+      PROOF["只有另有證據：registry allocation<br/>＋ global uniqueness<br/>才可另標 public/global realm<br/>仍不保證 route／policy／listener／reachability"]
+    end
+
+    HOST -->|"平行案例 1"| NAT
+    HOST -->|"平行案例 2"| NAPT
+    NAT -->|"形成 mapping record"| BOUND
+    NAPT -->|"形成 mapping record"| BOUND
+    BOUND ~~~ POLICY
+    POLICY -->|"允許"| OUTSIDE
+    POLICY ---|"阻擋"| DROP
+    OUTSIDE --- EBOUND
+    EBOUND -.->|"條件式另證"| PROOF
+  end
+
+  subgraph B["B　Transport service semantics：兩條時間線彼此分離，不比較速度"]
+    direction LR
+    subgraph U["UDP datagram"]
+      direction LR
+      UIN["送出<br/>D1　D2　D3　D4<br/>datagram boundary 保留"]
+      UNET["服務本身可能<br/>loss／reordering"]
+      UOUT["可能收到<br/>D1　D3　D2<br/>D4 未出現"]
+      ULIMIT["不內建 delivery、duplicate protection<br/>或 ordering 保證<br/>application 仍有 congestion responsibility"]
+      UIN --> UNET --> UOUT
+      UOUT --- ULIMIT
+    end
+
+    subgraph T["TCP byte stream（不連到上方 NAT 例）"]
+      direction LR
+      TEST["connection establishment"]
+      TSEND["應用送出<br/>A｜B"]
+      TSTREAM["reliable、in-order<br/>byte stream"]
+      TRECV["應用讀到連續 bytes<br/>不保留 message boundary"]
+      TLIMIT["connection 可能 failure<br/>不保證 immediate arrival、application processed<br/>或 identity／confidentiality security"]
+      TEST --> TSEND --> TSTREAM --> TRECV
+      TRECV --- TLIMIT
+    end
+
+    UOUT ~~~ TEST
+  end
+
+  SCOPE["全圖推論邊界　mapping table 僅為 IPv4／unicast／一筆 UDP tuple 的 Traditional NAT 教學表示　｜　mapping record ≠ policy evidence　｜　mapping ≠ allow　｜　allow ≠ listener exists　｜　TCP 面板不接 NAT　｜　UDP／TCP 只比較 service semantics、不排名速度"]
+  A ~~~ B
+  B ~~~ SCOPE
+
+  classDef host fill:#E7F0FA,stroke:#244A72,stroke-width:2px,color:#102A43,font-size:18px;
+  classDef mapping fill:#FFF1C7,stroke:#7A5710,stroke-width:3px,color:#2F250F,font-size:18px;
+  classDef policy fill:#FDE6E2,stroke:#8A3328,stroke-width:3px,color:#351713,font-size:18px;
+  classDef outside fill:#E7F3E8,stroke:#35623B,stroke-width:2px,color:#17341B,font-size:18px;
+  classDef stopped fill:#F7F7F7,stroke:#4C5661,stroke-width:3px,stroke-dasharray:6 4,color:#20262D,font-size:18px;
+  classDef note fill:#FFFFFF,stroke:#4C5661,stroke-width:2px,stroke-dasharray:4 4,color:#20262D,font-size:18px;
+  classDef boundary fill:#FFF9E8,stroke:#111827,stroke-width:3px,color:#111827,font-size:18px;
+  classDef udp fill:#E8F0FB,stroke:#315A89,stroke-width:2px,color:#102A43,font-size:18px;
+  classDef tcp fill:#F2EAF8,stroke:#65417D,stroke-width:2px,color:#2D1738,font-size:18px;
+  classDef scope fill:#FFF9E8,stroke:#111827,stroke-width:3px,color:#111827,font-size:18px;
+
+  class HOST host;
+  class NAT,NAPT mapping;
+  class BOUND boundary;
+  class POLICY policy;
+  class OUTSIDE outside;
+  class DROP stopped;
+  class EBOUND,PROOF note;
+  class UIN,UNET,UOUT,ULIMIT udp;
+  class TEST,TSEND,TSTREAM,TRECV,TLIMIT tcp;
+  class SCOPE scope;
+
+  style A fill:#FAFCFE,stroke:#52677D,stroke-width:2px
+  style TABLE fill:#FFFCF2,stroke:#7A5710,stroke-width:2px
+  style OBS fill:#FCFCFC,stroke:#4C5661,stroke-width:2px,stroke-dasharray:4 4
+  style B fill:#FAFCFE,stroke:#52677D,stroke-width:2px
+  style U fill:#F5F8FC,stroke:#315A89,stroke-width:2px
+  style T fill:#FAF7FC,stroke:#65417D,stroke-width:2px
+  linkStyle default stroke:#25364A,stroke-width:2.5px;
+  linkStyle 4,16,17,18 stroke-width:0px;

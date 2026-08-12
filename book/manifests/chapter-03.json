@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "chapter": "chapter-03",
+  "content_file": "book/chapters/chapter-03.md",
+  "content_sha256": "e23c8195813023bfcc71383930a025bea2f132bfbdf4248f1346d0cfeb5a8cf6",
+  "artifacts": {
+    "figures": [
+      {"file": "book/assets/figures/chapter-03-figure-metadata.md", "sha256": "593836a35fae51df8e33a176d5f2b8686173717f705cac8931c1ea3a6e00e116"},
+      {"file": "book/figures/story/chapter-03-switchboard-guard-spec.md", "sha256": "7738f94d687249b78c27217502203b48870e8dc3eaf696a96e6effdc429ce12d"},
+      {"file": "book/figures/story/chapter-03-switchboard-guard.mmd", "sha256": "ca25484255f6371cfad6b0256272d2e084427a98c01c073adb1e14f0bcb9051f"},
+      {"file": "book/figures/story/chapter-03-switchboard-guard.svg", "sha256": "aac6f87ec8da7d4791617721316daaeb0b3166664a49352573637bef8a2220ed"},
+      {"file": "book/figures/technical/chapter-03-mapping-policy-transport-spec.md", "sha256": "22ea90d6ec97a766b65b8602608e52710a427bd5bd3e0673e310f0ed50b1b2ca"},
+      {"file": "book/figures/technical/chapter-03-mapping-policy-transport.mmd", "sha256": "c04d2bf89d0239b5f873db18c9834d2c6f5e719ef941aeb9d63ecc535eab35bc"},
+      {"file": "book/figures/technical/chapter-03-mapping-policy-transport.svg", "sha256": "c4eaa78950ac63a283177ce7f71838a8b9cedd8580bd3ee1ef006c6ac236ec79"}
+    ],
+    "labs": []
+  },
+  "gates": {
+    "structure": {"status": "pass", "round": 2, "evidence": "book/reviews/chapter-03/structure-r02.md", "note": "", "content_sha256": "e23c8195813023bfcc71383930a025bea2f132bfbdf4248f1346d0cfeb5a8cf6"},
+    "body_technical": {"status": "pass", "round": 2, "evidence": "book/reviews/chapter-03/body-technical-r02.md", "note": "", "content_sha256": "e23c8195813023bfcc71383930a025bea2f132bfbdf4248f1346d0cfeb5a8cf6"},
+    "figure_technical": {"status": "pass", "round": 2, "evidence": "book/reviews/chapter-03/figure-technical-r02.md", "note": "", "content_sha256": "e23c8195813023bfcc71383930a025bea2f132bfbdf4248f1346d0cfeb5a8cf6", "artifact_set_sha256": "302b6630def6f8370f2c1967ce17da5c219212db1e06e868af13c9ae1ca976fb"},
+    "figure_accessibility": {"status": "pass", "round": 2, "evidence": "book/reviews/chapter-03/figure-accessibility-r02.md", "note": "", "content_sha256": "e23c8195813023bfcc71383930a025bea2f132bfbdf4248f1346d0cfeb5a8cf6", "artifact_set_sha256": "302b6630def6f8370f2c1967ce17da5c219212db1e06e868af13c9ae1ca976fb"},
+    "lab_execution": {"status": "not_applicable", "round": 0, "evidence": "", "note": "本章沒有正式累積式 Lab；只有一次性 rootless user/network namespace 章內觀察，正式 Lab 自 Chapter 04 開始。", "content_sha256": "e23c8195813023bfcc71383930a025bea2f132bfbdf4248f1346d0cfeb5a8cf6", "artifact_set_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"},
+    "lab_technical": {"status": "not_applicable", "round": 0, "evidence": "", "note": "沒有正式 Lab artifact；TCP/UDP listener 故障、證據、恢復與 cleanup 已由正文技術 Gate 在隔離 namespace 實跑審查。", "content_sha256": "e23c8195813023bfcc71383930a025bea2f132bfbdf4248f1346d0cfeb5a8cf6", "artifact_set_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"},
+    "editorial": {"status": "pass", "round": 1, "evidence": "book/reviews/chapter-03/editorial-r01.md", "note": "", "content_sha256": "e23c8195813023bfcc71383930a025bea2f132bfbdf4248f1346d0cfeb5a8cf6"}
+  }
+}

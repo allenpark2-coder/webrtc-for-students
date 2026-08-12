@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+- 完成並正式晉升 Chapter 03 正文、兩張 Mermaid／SVG 圖、五個適用 Gate 與 hash manifest；正式 Lab 標記不適用。
+- 新增 Chapter 03 一次性 rootless user/network namespace TCP／UDP 安全觀察，完整驗證故障、恢復與 cleanup。
+- 新增 Chapter 03 學生瀏覽器閱讀版與 A4 PDF。
 - 完成並正式晉升 Chapter 02 正文、兩張 Mermaid／SVG 圖、五個適用 Gate 與 hash manifest；正式 Lab 標記不適用。
 - 新增 Chapter 02 學生瀏覽器閱讀版與 A4 PDF，首頁可直接選讀前兩章。
 - 完成並正式晉升 Chapter 01 正文、兩張 Mermaid／SVG 圖、五個適用 Gate 與 hash manifest；正式 Lab 標記不適用。

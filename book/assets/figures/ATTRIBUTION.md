@@ -58,3 +58,25 @@
 - 授權：本專案自行撰寫；最終書稿授權於出版前確認
 - 修改內容：r03 將 packet 欄位間關係改為無方向版面分隔，移除可能被誤讀為處理流程的箭頭
 - 對應規格／prompt：`book/figures/technical/chapter-02-ip-port-packet-spec.md`；未使用生圖 prompt
+
+## chapter-03-switchboard-guard
+
+- 檔案：`book/figures/story/chapter-03-switchboard-guard.mmd`、`.svg`
+- 用途／caption：圖 3-1，總機與警衛是兩個工作。
+- 作者或生成工具：本專案自行撰寫 Mermaid；`@mermaid-js/mermaid-cli` 11.16.0 渲染 SVG
+- 來源 URL：<https://www.rfc-editor.org/info/rfc2663>、<https://csrc.nist.gov/pubs/sp/800/41/r1/final>、<https://www.rfc-editor.org/info/rfc8085>、<https://www.rfc-editor.org/info/rfc9293>
+- 建立／下載日期：2026-08-12
+- 授權：本專案自行撰寫；最終書稿授權於出版前確認
+- 修改內容：r02 移除跨面板流程箭頭，維持 mapping／policy 與 UDP／TCP 語意分離
+- 對應規格／prompt：`book/figures/story/chapter-03-switchboard-guard-spec.md`；未使用生圖 prompt
+
+## chapter-03-mapping-policy-transport
+
+- 檔案：`book/figures/technical/chapter-03-mapping-policy-transport.mmd`、`.svg`
+- 用途／caption：圖 3-2，Address 表示、mapping、policy 與 transport 語意分層。
+- 作者或生成工具：本專案自行撰寫 Mermaid；`@mermaid-js/mermaid-cli` 11.16.0 渲染 SVG
+- 來源 URL：<https://www.rfc-editor.org/info/rfc1918>、<https://www.rfc-editor.org/info/rfc2663>、<https://www.rfc-editor.org/info/rfc4787>、<https://www.rfc-editor.org/info/rfc8085>、<https://www.rfc-editor.org/info/rfc9293>
+- 建立／下載日期：2026-08-12
+- 授權：本專案自行撰寫；最終書稿授權於出版前確認
+- 修改內容：r02 加強 mapping record、policy evidence、allow 與 listener 的分層，並補全 UDP／TCP 限制文字
+- 對應規格／prompt：`book/figures/technical/chapter-03-mapping-policy-transport-spec.md`；未使用生圖 prompt

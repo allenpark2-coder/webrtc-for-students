@@ -127,6 +127,102 @@
 首次出現章節：Chapter 02
 來源：https://www.rfc-editor.org/rfc/rfc8200.html#section-3
 
+## 私有 IP 位址
+
+英文：private IP address
+中文：私有 IP 位址
+一句話：RFC 1918 指定給 private internets 使用的三段 IPv4 address space
+生活比喻：組織內可自行協調、別的組織也可能重複使用的內線表示
+真正作用：在 IPv4 中提供 `10/8`、`172.16/12`、`192.168/16` 三段 private-use 範圍
+常見誤解：Private 不等於安全、加密、匿名、固定不可出網、LAN 同義詞，也不表示一定有 NAT
+適用版本／範圍：只限 RFC 1918 的 IPv4 private address space；不把同名分類直接套到 IPv6
+首次出現章節：Chapter 03
+來源：https://www.rfc-editor.org/info/rfc1918
+
+## 公用 IP 位址
+
+英文：public IP address
+中文：公用 IP 位址
+一句話：公用／全域 address realm 中，由 IANA 或相當 registry 分配而具全域唯一性的 IP address
+生活比喻：在共同登記制度下不和其他人重複的聯絡表示，但不保證道路暢通或有人接聽
+真正作用：描述 RFC 2663 §2.7 的 public/global realm 位址；和某個觀察點看到的外側位址是不同維度
+常見誤解：它不是「任意 NAT 外側觀察值」，也不是 RFC 1918 補集；具全域唯一性仍不保證 route、policy 放行、listener 存在或實際可達
+適用版本／範圍：RFC 2663 的 IPv4 public/global address realm 入門用法；是否為外側觀察值須另依觀察位置記錄
+首次出現章節：Chapter 03
+來源：https://www.rfc-editor.org/rfc/rfc2663.html#section-2.7、https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
+
+## NAT
+
+英文：Network Address Translation（NAT）
+中文：網路位址轉換
+一句話：在不同 address realm 之間轉換或對應 IPv4 address 表示
+生活比喻：總機把內側聯絡表示對應成外側聯絡表示
+真正作用：本章只教 Traditional NAT 的 IPv4 入門模型；address-only translation 仍是 NAT
+常見誤解：NAT 不是 firewall、加密、身分驗證、路由器同義詞，也不保證端到端可達
+適用版本／範圍：RFC 2663 的 IPv4 術語與分類背景；Informational，不當作所有現代實作的強制行為
+首次出現章節：Chapter 03
+來源：https://www.rfc-editor.org/info/rfc2663
+
+## NAPT
+
+英文：Network Address Port Translation（NAPT）
+中文：網路位址與連接埠轉換
+一句話：Traditional NAT 中同時轉換 IPv4 address 與 TCP／UDP port 的子類
+生活比喻：總機不只換外線表示，也以不同入口數字區分多筆內側傳送
+真正作用：讓多個內側 session 可共用一個或一組外側 address 表示
+常見誤解：不能把所有 NAT 都說成一定改 port，也不能把 NAPT mapping 說成永久規則
+適用版本／範圍：RFC 2663 的 IPv4 Traditional NAT taxonomy；具體 mapping 範例限本章說明的單播 UDP、內外都只談 IPv4 的 Traditional NAT 情境
+首次出現章節：Chapter 03
+來源：https://www.rfc-editor.org/info/rfc2663
+
+## 對應
+
+英文：mapping
+中文：對應
+一句話：NAT／NAPT 為這次內外位址表示維持的狀態關聯
+生活比喻：總機留下的一筆暫時內線／外線對照
+真正作用：讓受控 tuple 的內側表示與外側表示可以被關聯；實際 key、方向、refresh 與 lifetime 依規範範圍及實作而異
+常見誤解：Mapping 不是 DNS、route、firewall allow rule 或永久身分；存在 mapping 不代表回程 traffic 必然放行
+適用版本／範圍：具體行為範例只限 RFC 4787 及其 RFC 6888／7857 更新下的單播 UDP、內外都只談 IPv4 的 Traditional NAT 入門範圍
+首次出現章節：Chapter 03
+來源：https://www.rfc-editor.org/info/rfc4787、https://www.rfc-editor.org/info/rfc6888、https://www.rfc-editor.org/info/rfc7857
+
+## 防火牆
+
+英文：firewall
+中文：防火牆
+一句話：依 policy 對特定 traffic flow 允許或阻擋的控制
+生活比喻：警衛依規則決定這次資料能否通過
+真正作用：在本章有限模型中，對流量作獨立於 address translation mapping 的 policy 判斷
+常見誤解：Firewall 不負責定義 private／public address；NAT mapping 存在也不代表 firewall 一定放行
+適用版本／範圍：NIST SP 800-41 Rev. 1 的一般入門模型；不宣稱所有產品位置、條件或部署相同
+首次出現章節：Chapter 03
+來源：https://csrc.nist.gov/pubs/sp/800/41/r1/final
+
+## UDP
+
+英文：User Datagram Protocol（UDP）
+中文：使用者資料包協定
+一句話：提供不可靠 datagram service，保留每份 message 的邊界，但不保證送達、去重或順序
+生活比喻：一張張明信片各自有邊界，寄出卻不是簽收保證
+真正作用：以 datagram 為單位提供 minimal transport service；應用仍要承擔所需可靠性與壅塞責任
+常見誤解：UDP 不是「沒有任何 state」、一定即時、永不重送或一定比 TCP 快；本機 send success 也不等於 peer 收到
+適用版本／範圍：RFC 8085／BCP 145；本章不採 RFC 8899 更新所涉及的 datagram PLPMTUD 細節
+首次出現章節：Chapter 03
+來源：https://www.rfc-editor.org/info/rfc8085
+
+## TCP
+
+英文：Transmission Control Protocol（TCP）
+中文：傳輸控制協定
+一句話：提供建立連線狀態後的 reliable、in-order byte-stream service
+生活比喻：登記後傳送連續紙帶，接收者依序取得字流，但表單邊界需另約定
+真正作用：用偵測、sequence 與 retransmission 等機制提供可靠按序的 byte stream；不保留 application message 邊界
+常見誤解：TCP 不表示封包永不遺失、立即抵達、對方應用已處理、具身分安全，也不表示在所有情境一定比 UDP 慢
+適用版本／範圍：RFC 9293／STD 7 的 TCP service model 入門範圍
+首次出現章節：Chapter 03
+來源：https://www.rfc-editor.org/info/rfc9293
+
 ## Peer
 
 英文：Peer
