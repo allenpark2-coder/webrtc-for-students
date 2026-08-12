@@ -17,6 +17,13 @@
 | RFC／規範 | Status／更新關係 | 本書採用範圍 | 章節 |
 |---|---|---|---:|
 | RFC 8825 | Proposed Standard；Internet Standards Track | WebRTC applicability statement 與規範 roadmap；本身不另行定義 protocol | 01 |
+| RFC 791／STD 5 | Internet Standard；replaces RFC 760；被 RFC 1349、2474、6864 更新 | IPv4 的 address、datagram 與不提供可靠性／順序保證；只和 RFC 8200 共同支撐版本中立入門模型，不沿用 classful address 教學 | 02 |
+| RFC 1122／STD 3 | Internet Standard；updates RFC 793；被 RFC 1349、4379、5884、6093、6298、6633、6864、8029、9293 更新 | Internet host 分層與互連背景；不作 client/server 或 LAN/WAN 定義來源，也不採用已由 RFC 9293 取代的 TCP requirements | 02 |
+| RFC 4291 | Draft Standard；obsoletes RFC 3513；被 RFC 5952、6052、7136、7346、7371、8064 更新 | IPv6 address 對 interface 的關係，以及單一 interface 可有多個 IPv6 address；不外推為所有 IP 版本的配置機制 | 02 |
+| RFC 4862 | Draft Standard；obsoletes RFC 2462；被 RFC 7527、9762 更新 | 僅用 IPv6 SLAAC 的 preferred／valid lifetime 說明某些 IP address 會隨時間失效；不泛化為所有位址生命週期 | 02 |
+| RFC 6335／BCP 165 | Best Current Practice；RFC 6335 updates RFC 2780、2782、3828、4340、4960、5595；現行 BCP 165 亦含 RFC 7605 | 服務名稱、transport-specific port number namespace 與 registry 管理背景；不把登錄等同服務可用或可信 | 02 |
+| RFC 9110／STD 97 | Internet Standard；updates RFC 3864；obsoletes RFC 2818、7230（部分）、7231、7232、7233、7235、7538、7615、7694 | 只在本章 HTTP localhost 練習中定義 client/server 程式角色與角色可依 connection 改變；不外推到所有協定 | 02 |
+| NIST SP 800-82 Rev. 3 | Final，2023-09；supersedes Rev. 2；NIST 已另有 Rev. 4 draft | LAN 是相對有限範圍，WAN 通常服務更多獨立使用者且跨較大地理範圍；不提供單一距離門檻，也不把教學案例的管理邊界當正式定義 | 02 |
 | RFC 1918 | BCP | IPv4 私有位址 | 03 |
 | RFC 2663 | Informational | NAT/NAPT 術語；不把 NAT 說成 firewall | 03 |
 | RFC 4787 | BCP；被 RFC 6888、7857 更新 | UDP NAT 行為；連同更新文件一起解讀 | 03 |

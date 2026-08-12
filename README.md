@@ -7,18 +7,20 @@
 ## 目前狀態
 
 - 階段：正式逐章製作。
-- 正式章節：Chapter 01 已通過全部適用 Gate 並晉升。
+- 正式章節：Chapter 01、Chapter 02 已通過全部適用 Gate 並晉升。
 - 正式規劃：`book/plan.md`；使用者已於 2026-08-12 核准開始 Chapter 01。
-- Chapter 01 manifest：`book/manifests/chapter-01.json`。
+- 最新 manifest：`book/manifests/chapter-02.json`。
 - 原始需求：`references/original-webrtc-brief.txt`，只作需求與範圍來源。
 
-下一步依正式 roadmap 建立 Chapter 02 scope；正式 Lab 自 Chapter 04 開始。
+下一步依正式 roadmap 建立 Chapter 03 scope；正式 Lab 自 Chapter 04 開始。
 
 ## 學生閱讀版
 
 - 線上閱讀：<https://allenpark2-coder.github.io/webrtc-for-students/>
 - `dist/chapter-01.html`：瀏覽器閱讀版，兩張 SVG 已內嵌，可離線開啟。
 - `dist/chapter-01.pdf`：A4 下載與列印版。
+- `dist/chapter-02.html`：Chapter 02 瀏覽器閱讀版，兩張 SVG 已內嵌，可離線開啟。
+- `dist/chapter-02.pdf`：Chapter 02 A4 下載與列印版。
 - `dist/book.md`：通過 manifest 驗證後組裝的出版來源稿。
 
 給學生時優先分享 HTML；需要傳到班級群組、Google Classroom 或列印時使用 PDF。

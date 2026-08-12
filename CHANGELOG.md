@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+- 完成並正式晉升 Chapter 02 正文、兩張 Mermaid／SVG 圖、五個適用 Gate 與 hash manifest；正式 Lab 標記不適用。
+- 新增 Chapter 02 學生瀏覽器閱讀版與 A4 PDF，首頁可直接選讀前兩章。
 - 完成並正式晉升 Chapter 01 正文、兩張 Mermaid／SVG 圖、五個適用 Gate 與 hash manifest；正式 Lab 標記不適用。
 - 更正 RFC 8825 為 Proposed Standard／Internet Standards Track，並同步規範基線、roadmap、scope 與正文。
 - 由 book-authoring-kit 建立獨立的 WebRTC 高中生科普書專案。

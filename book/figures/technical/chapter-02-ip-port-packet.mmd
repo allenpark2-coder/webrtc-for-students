@@ -1,0 +1,100 @@
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Noto Sans CJK TC, Noto Sans TC, sans-serif","primaryColor":"#ffffff","primaryTextColor":"#111827","primaryBorderColor":"#1f2937","lineColor":"#1f2937","secondaryColor":"#f3f4f6","tertiaryColor":"#ffffff","clusterBkg":"#ffffff","clusterBorder":"#374151","fontSize":"18px"},"flowchart":{"htmlLabels":true,"curve":"linear","nodeSpacing":24,"rankSpacing":32,"diagramPadding":12}}}%%
+flowchart LR
+    accTitle: IP、port 與 packet 的分層概念
+    accDescr: 專業圖：裝置 A 與裝置 B 之間的要求與回應箭頭標示本次 HTTP connection 角色；來源與目的 IP、來源與目的 port 分列，packet 是獨立資料單位，近端 LAN 與跨網路 WAN 範圍另以文字和線型區分。
+
+    subgraph CANVAS["IP、port 與 packet 的分層概念"]
+        direction TB
+
+        subgraph TOP[" "]
+            direction LR
+            subgraph ENDPOINTS["A　端點、角色與欄位"]
+                direction RL
+                subgraph DEV_A["裝置 A"]
+                    direction TB
+                    A_IP["網路位置欄位<br/><b>來源 IP</b>"]
+                    A_PORT["分開的傳輸欄位<br/><b>來源 port</b>"]
+                end
+                CONNECTION["本次 localhost HTTP connection<br/><b>概念要求：A client（建立） → B server（接受）</b><br/>概念回應：B → A"]
+                subgraph DEV_B["裝置 B"]
+                    direction TB
+                    B_IP["網路位置欄位<br/><b>目的 IP</b>"]
+                    B_PORT["分開的傳輸欄位<br/><b>目的 port</b>"]
+                    SERVICE["特定服務<br/>不代表必然執行"]
+                    B_PORT -->|"指出服務端點"| SERVICE
+                end
+                A_PORT ==>|"概念要求方向"| CONNECTION
+                CONNECTION ==>|"建立 → 接受"| B_PORT
+                B_IP -.->|"概念回應方向"| A_IP
+            end
+
+            subgraph PACKET["B　packet：獨立、有限的資料單位"]
+                direction TB
+                P_IP["網路位置欄位<br/>來源 IP　｜　目的 IP"]
+                P_PORT["分開的傳輸欄位<br/>來源 port　｜　目的 port"]
+                P_CONTENT["所攜內容"]
+                P_LIMIT["資料處理單位 ≠ 送達保證"]
+                P_IP ~~~ P_PORT
+                P_PORT ~~~ P_CONTENT
+                P_CONTENT ~~~ P_LIMIT
+            end
+            A_IP ~~~ P_IP
+        end
+
+        subgraph LOWER[" "]
+            direction LR
+            subgraph MIDDLE["C　LAN／WAN 相對尺度（與上方 localhost connection 分開的示例）"]
+                direction LR
+                subgraph LAN["LAN：相對有限區域（實線）"]
+                    direction LR
+                    LA["抽象裝置甲"] -.- LB["抽象裝置乙"]
+                end
+                INTER["網路互連位置<br/>本章不展開"]
+                subgraph WAN["WAN：通常較大範圍／更多獨立使用者（虛線）"]
+                    direction LR
+                    W1["較小網路甲<br/>使用者群"] -.- W2["較小網路乙<br/>使用者群"]
+                    W2 -.- W3["較小網路丙<br/>使用者群"]
+                end
+                SCALE_NOTE["相對尺度；無單一距離門檻<br/>WAN 可互連較小網路，但不等於 Internet<br/>真實分類仍須看具體網路設計"]
+                LAN -.->|"概念前進"| INTER
+                INTER -.->|"概念前進"| WAN
+                WAN ~~~ SCALE_NOTE
+            end
+
+            subgraph LIMIT["圖例／推論邊界"]
+                direction LR
+                L1["① 角色附著於本次 localhost HTTP connection<br/>不是裝置的永久類型"]
+                L2["② IP 與 port 是分開欄位<br/>port 不能離開 IP 與傳輸脈絡<br/>單獨指出完整目的地"]
+                L3["③ LAN／WAN 是相對尺度<br/>不能只由距離或故事邊界決定"]
+                L4["④ packet 與箭頭只表示概念單位／方向<br/>不保證到達、順序、只出現一次、準時<br/>或最短路徑"]
+                L1 ~~~ L2
+                L2 ~~~ L3
+                L3 ~~~ L4
+            end
+        end
+
+        A_IP ~~~ LA
+        P_LIMIT ~~~ SCALE_NOTE
+    end
+
+    classDef field fill:#ffffff,stroke:#1f2937,color:#111827,stroke-width:2px;
+    classDef service fill:#f3f4f6,stroke:#111827,color:#111827,stroke-width:3px;
+    classDef note fill:#f3f4f6,stroke:#374151,color:#111827,stroke-width:2px;
+    classDef packet fill:#ffffff,stroke:#111827,color:#111827,stroke-width:3px;
+    classDef warning fill:#ffffff,stroke:#111827,color:#111827,stroke-width:3px;
+    class A_IP,A_PORT,B_IP,B_PORT,LA,LB,W1,W2,W3 field;
+    class SERVICE,CONNECTION service;
+    class INTER,SCALE_NOTE,P_LIMIT note;
+    class P_IP,P_PORT,P_CONTENT packet;
+    class L1,L2,L3,L4 warning;
+    style CANVAS fill:#ffffff,stroke:#111827,stroke-width:3px
+    style TOP fill:#ffffff,stroke:#ffffff
+    style ENDPOINTS fill:#ffffff,stroke:#374151,stroke-width:2px
+    style DEV_A fill:#ffffff,stroke:#1f2937,stroke-width:3px
+    style DEV_B fill:#ffffff,stroke:#1f2937,stroke-width:3px
+    style PACKET fill:#ffffff,stroke:#111827,stroke-width:3px
+    style LOWER fill:#ffffff,stroke:#ffffff
+    style MIDDLE fill:#ffffff,stroke:#374151,stroke-width:2px
+    style LAN fill:#ffffff,stroke:#1f2937,stroke-width:3px
+    style WAN fill:#ffffff,stroke:#1f2937,stroke-width:3px,stroke-dasharray:10 6
+    style LIMIT fill:#ffffff,stroke:#111827,stroke-width:3px

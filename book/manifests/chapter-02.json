@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "chapter": "chapter-02",
+  "content_file": "book/chapters/chapter-02.md",
+  "content_sha256": "a3fc4b1eb2913194eac7f5a2c80045675c8c5b30305c598b200207fd49adde69",
+  "artifacts": {
+    "figures": [
+      {"file": "book/assets/figures/chapter-02-figure-metadata.md", "sha256": "2a749bd0ffbbc2c7e8cd168304968395d2fe57a29ce9c6611fa41e4992d6a65c"},
+      {"file": "book/figures/story/chapter-02-address-and-range-spec.md", "sha256": "d5ee82f21c4942ed205abdb88e48361e15cb16f07d185a8897447758d80f7596"},
+      {"file": "book/figures/story/chapter-02-address-and-range.mmd", "sha256": "4c8c7632434bdfe8bd3defdb3e3dc357594d01ecb6664f862c990c8b691d7bc6"},
+      {"file": "book/figures/story/chapter-02-address-and-range.svg", "sha256": "a0f3dd56e41d8aa994afc6d8f9a551c9f088ffe65108c4e434b8a78a7821f804"},
+      {"file": "book/figures/technical/chapter-02-ip-port-packet-spec.md", "sha256": "f18726cacb753aa01daf4977bdc967690a404b70c3a44fafe033fa9b931ee585"},
+      {"file": "book/figures/technical/chapter-02-ip-port-packet.mmd", "sha256": "009f9622d99a6c99a264cee69fc771233b9822d5a0c093ee12ac005957329001"},
+      {"file": "book/figures/technical/chapter-02-ip-port-packet.svg", "sha256": "1d8ef64385f4aa3b2df34cef22a44c980198c7a77591048aa47ca1a72970d917"}
+    ],
+    "labs": []
+  },
+  "gates": {
+    "structure": {
+      "status": "pass", "round": 3,
+      "evidence": "book/reviews/chapter-02/structure-r03.md", "note": "",
+      "content_sha256": "a3fc4b1eb2913194eac7f5a2c80045675c8c5b30305c598b200207fd49adde69"
+    },
+    "body_technical": {
+      "status": "pass", "round": 2,
+      "evidence": "book/reviews/chapter-02/body-technical-r02.md", "note": "",
+      "content_sha256": "a3fc4b1eb2913194eac7f5a2c80045675c8c5b30305c598b200207fd49adde69"
+    },
+    "figure_technical": {
+      "status": "pass", "round": 2,
+      "evidence": "book/reviews/chapter-02/figure-technical-r02.md", "note": "",
+      "content_sha256": "a3fc4b1eb2913194eac7f5a2c80045675c8c5b30305c598b200207fd49adde69",
+      "artifact_set_sha256": "c6a76a305a02b8c6c12f1bcc2c2bc5975101169b3272c7cf1242b41f974c8a1d"
+    },
+    "figure_accessibility": {
+      "status": "pass", "round": 2,
+      "evidence": "book/reviews/chapter-02/figure-accessibility-r02.md", "note": "",
+      "content_sha256": "a3fc4b1eb2913194eac7f5a2c80045675c8c5b30305c598b200207fd49adde69",
+      "artifact_set_sha256": "c6a76a305a02b8c6c12f1bcc2c2bc5975101169b3272c7cf1242b41f974c8a1d"
+    },
+    "lab_execution": {
+      "status": "not_applicable", "round": 0,
+      "evidence": "", "note": "本章沒有正式累積式 Lab；只有綁定 127.0.0.1 的章內安全觀察，正式 Lab 自 Chapter 04 開始。",
+      "content_sha256": "a3fc4b1eb2913194eac7f5a2c80045675c8c5b30305c598b200207fd49adde69",
+      "artifact_set_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "lab_technical": {
+      "status": "not_applicable", "round": 0,
+      "evidence": "", "note": "沒有正式 Lab artifact；localhost HTTP 故障、證據、恢復與 cleanup 已由正文技術與 editorial Gate 審查。",
+      "content_sha256": "a3fc4b1eb2913194eac7f5a2c80045675c8c5b30305c598b200207fd49adde69",
+      "artifact_set_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "editorial": {
+      "status": "pass", "round": 1,
+      "evidence": "book/reviews/chapter-02/editorial-r01.md", "note": "",
+      "content_sha256": "a3fc4b1eb2913194eac7f5a2c80045675c8c5b30305c598b200207fd49adde69"
+    }
+  }
+}

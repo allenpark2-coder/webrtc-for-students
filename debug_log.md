@@ -25,3 +25,11 @@
 - 主要修正：將 RFC 8825 更正為 Proposed Standard／Internet Standards Track；補上兩張核准 SVG 的正式引用、caption 與 alt text；Mermaid 使用 11.16.0 固定渲染，SVG 內建 title／desc／ARIA。
 - Figure artifact-set SHA-256：`19f5197167bbec5f7e19426441479143b723f051c1420ae81ee59284a152cb7c`
 - Manifest：`book/manifests/chapter-01.json`
+
+## 2026-08-12 — Chapter 02 — PASS
+
+- Content SHA-256：`a3fc4b1eb2913194eac7f5a2c80045675c8c5b30305c598b200207fd49adde69`
+- 審查輪次：structure r03、body technical r02、figure technical r02、figure accessibility r02、editorial r01；Lab execution／technical 為有理由的 `not_applicable`。
+- 主要修正：限制 client／server 定義於 localhost HTTP connection；以 IPv4／IPv6 第一手規範及 NIST 資料校準 IP、LAN／WAN 邊界；記錄實際 Ubuntu／Python 驗證環境；將 packet 圖的方向箭頭改為無方向分隔。
+- Figure artifact-set SHA-256：`c6a76a305a02b8c6c12f1bcc2c2bc5975101169b3272c7cf1242b41f974c8a1d`
+- Manifest：`book/manifests/chapter-02.json`

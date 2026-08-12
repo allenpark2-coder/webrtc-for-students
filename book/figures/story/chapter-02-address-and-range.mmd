@@ -1,0 +1,81 @@
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Noto Sans CJK TC, Noto Sans TC, sans-serif","primaryColor":"#ffffff","primaryTextColor":"#111827","primaryBorderColor":"#1f2937","lineColor":"#1f2937","secondaryColor":"#f3f4f6","tertiaryColor":"#ffffff","clusterBkg":"#ffffff","clusterBorder":"#374151","fontSize":"18px"},"flowchart":{"htmlLabels":true,"curve":"linear","nodeSpacing":24,"rankSpacing":34,"diagramPadding":12}}}%%
+flowchart LR
+    accTitle: 地址、入口、相對範圍與 connection 角色
+    accDescr: 生活故事圖：左側是相對有限區域內的地址與服務入口，右側是通常較大地理範圍並連接更多獨立使用者的情境；小插格顯示同一程式在不同 localhost HTTP connection 中可交換 client 與 server 角色，角色標籤附著於 connection，且沒有單一距離門檻。
+
+    subgraph CANVAS["地址、入口、相對範圍與 connection 角色"]
+        direction TB
+
+        subgraph TOP[" "]
+            direction LR
+            subgraph ADDRESS["A　地址＋服務入口"]
+                direction LR
+                MING["小明<br/>校務文件"] ==>|"先找到地址"| ADDRESS_SIGN["大樓地址"]
+                ADDRESS_SIGN ==>|"再找到服務入口"| REG["行政大樓<br/><b>註冊組服務入口</b>"]
+                OTHER["其他入口<br/>出納組／設備組"]
+                REG ~~~ OTHER
+            end
+
+            subgraph RANGE["B　相對尺度；無單一距離門檻"]
+                direction LR
+                subgraph LAN["LAN：相對有限區域（實線）"]
+                    direction TB
+                    LAN_EX["例如一棟建築內"]
+                    LAN_LIMIT["仍須看具體網路設計"]
+                end
+                COMPARE["尺度比較<br/>不是距離公式"]
+                subgraph WAN["WAN：通常較大範圍／更多獨立使用者（虛線）"]
+                    direction LR
+                    W1["區域甲<br/>使用者群"] -.- W2["區域乙<br/>使用者群"]
+                    W2 -.- W3["區域丙<br/>使用者群"]
+                end
+                WAN_NOTE["可互連較小網路<br/>WAN 不等於 Internet"]
+                LAN ~~~ COMPARE
+                COMPARE ~~~ WAN
+                WAN ~~~ WAN_NOTE
+            end
+        end
+
+        subgraph BOTTOM[" "]
+            direction LR
+            subgraph ROLE["C　同一台測試電腦：localhost HTTP 情境"]
+                direction LR
+                PROG_A["程式 A<br/>小明這次操作"]
+                PROG_B["程式 B<br/>小華這次操作"]
+                PROG_B ==>|"connection ①<br/>B：client（建立） → A：server（接受）"| PROG_A
+                PROG_A -.->|"connection ②<br/>A：client（建立） → B：server（接受）"| PROG_B
+                ROLE_NOTE["換一條 connection，同一程式可能交換角色<br/>不泛化到所有通訊方式"]
+                PROG_B ~~~ ROLE_NOTE
+            end
+
+            subgraph LIMIT["圖例／邊界"]
+                direction LR
+                L1["尺度示例，不是距離公式<br/>校園線或行政線不能代替<br/>真實網路分類"]
+                L2["文件箭頭只表示<br/>故事中的交付方向<br/>不表示真實資料路徑"]
+                L3["不保證送達<br/>client／server 只對應圖中的<br/>localhost HTTP connection"]
+                L1 ~~~ L2
+                L2 ~~~ L3
+            end
+        end
+
+        MING ~~~ PROG_A
+        WAN_NOTE ~~~ L3
+    end
+
+    classDef content fill:#ffffff,stroke:#1f2937,color:#111827,stroke-width:2px;
+    classDef sign fill:#f3f4f6,stroke:#1f2937,color:#111827,stroke-width:3px;
+    classDef note fill:#f3f4f6,stroke:#374151,color:#111827,stroke-width:2px;
+    classDef warning fill:#ffffff,stroke:#111827,color:#111827,stroke-width:3px;
+    class MING,REG,OTHER,LAN_EX,LAN_LIMIT,W1,W2,W3,PROG_A,PROG_B content;
+    class ADDRESS_SIGN sign;
+    class COMPARE,WAN_NOTE,ROLE_NOTE note;
+    class L1,L2,L3 warning;
+    style CANVAS fill:#ffffff,stroke:#111827,stroke-width:3px
+    style TOP fill:#ffffff,stroke:#ffffff
+    style BOTTOM fill:#ffffff,stroke:#ffffff
+    style ADDRESS fill:#ffffff,stroke:#374151,stroke-width:2px
+    style RANGE fill:#ffffff,stroke:#374151,stroke-width:2px
+    style LAN fill:#ffffff,stroke:#1f2937,stroke-width:3px
+    style WAN fill:#ffffff,stroke:#1f2937,stroke-width:3px,stroke-dasharray:10 6
+    style ROLE fill:#ffffff,stroke:#374151,stroke-width:2px
+    style LIMIT fill:#ffffff,stroke:#111827,stroke-width:3px
